@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private SpawnerCoin _spawnerCoin;
+    public bool IsExist = false;
 
     private void OnTriggerEnter2D (Collider2D other)
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
-            SpawnerCoin.ChangeExist();
             Destroy(gameObject);
+            IsExist = false;
         }
+    }
+
+    public void SetExisting()
+    {
+        IsExist = true;
     }
 }

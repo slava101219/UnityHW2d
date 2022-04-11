@@ -763,7 +763,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coin: {fileID: -5507292682986106345, guid: e57cc7fcc977d214ebd2f9de3e41a538, type: 3}
-  _isExist: 0
 --- !u!1001 &628059428
 PrefabInstance:
   m_ObjectHideFlags: 0

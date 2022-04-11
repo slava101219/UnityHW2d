@@ -9,13 +9,7 @@ public class SpawnerCoin : MonoBehaviour
     private float _xCordinate = -80;
     private float _yCordinate = 2.4f;
     private float _zCordinate = 0;
-    private static bool _isExist = false;
     private Vector3 _spawnPoint;
-
-    public static void ChangeExist()
-    {
-        _isExist = !_isExist;
-    }
 
     private void Start()
     {
@@ -27,11 +21,11 @@ public class SpawnerCoin : MonoBehaviour
     {
         while (true)
         {
-            if (_isExist == false)
+            if (_coin.IsExist == false)
             {
                 yield return new WaitForSeconds(2);
                 Instantiate(_coin, _spawnPoint, Quaternion.identity);
-                ChangeExist();
+                _coin.SetExisting();
             }
             yield return null;
         }
