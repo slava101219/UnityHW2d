@@ -9,6 +9,7 @@ public class MoveController : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private Animator _animator;
 
+    private const string _animationNameMoveValue = "horizontalMove";
     private float _offsetY = -1.2f;
     private float _radius = 0.3f;
     private bool _facingRight = true;
@@ -28,7 +29,7 @@ public class MoveController : MonoBehaviour
     private void FixedUpdate()
     {       
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _speed;
-        _animator.SetFloat("horizontalMove", Mathf.Abs(_horizontalMove));
+        _animator.SetFloat(_animationNameMoveValue, Mathf.Abs(_horizontalMove));
         CheckNeedTurn();
         Vector2 targetVelocity = new Vector2(_horizontalMove * 10f, _rigidbody.velocity.y);
         _rigidbody.velocity = targetVelocity;
