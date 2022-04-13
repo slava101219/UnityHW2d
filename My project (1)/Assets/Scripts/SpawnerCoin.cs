@@ -32,7 +32,7 @@ public class SpawnerCoin : MonoBehaviour
         }
     }
 
-    private void ChangeExist()
+    public void ChangeExist()
     {
         _isExist = false;
     }
