@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
-            FindObjectOfType<SpawnerCoin>().ChangeExist();
+            FindObjectOfType<SpawnerCoin>().ReportDestraction();
             Destroy(gameObject);
         }
     }

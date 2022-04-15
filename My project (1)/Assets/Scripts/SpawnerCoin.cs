@@ -6,15 +6,11 @@ public class SpawnerCoin : MonoBehaviour
 {
     [SerializeField] private Coin _coin;
 
-    private float _xCordinate = -80;
-    private float _yCordinate = 2.4f;
-    private float _zCordinate = 0;
     private bool _isExist = false;
-    private Vector3 _spawnPoint;
+    private Vector3 _spawnPoint = new Vector3(-80, 2.4f, 0);
 
     private void Start()
     {
-        _spawnPoint = new Vector3(_xCordinate, _yCordinate, _zCordinate);
         StartCoroutine(Spawn());
     }
 
@@ -32,7 +28,7 @@ public class SpawnerCoin : MonoBehaviour
         }
     }
 
-    public void ChangeExist()
+    public void ReportDestraction()
     {
         _isExist = false;
     }
