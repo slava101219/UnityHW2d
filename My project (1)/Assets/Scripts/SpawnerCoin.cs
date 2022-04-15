@@ -8,6 +8,7 @@ public class SpawnerCoin : MonoBehaviour
 
     private bool _isExist = false;
     private Vector3 _spawnPoint = new Vector3(-80, 2.4f, 0);
+    private WaitForSeconds _sleep = new WaitForSeconds(2);
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class SpawnerCoin : MonoBehaviour
         {
             if (_isExist == false)
             {
-                yield return new WaitForSeconds(2);
+                yield return _sleep;
                 Instantiate(_coin, _spawnPoint, Quaternion.identity);
                 _isExist = true;
             }
