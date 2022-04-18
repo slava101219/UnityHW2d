@@ -24,7 +24,7 @@ public class Mover : MonoBehaviour
 
     private void Update()
     {
-        JumpAsNeeded();
+        Jump();
     }
 
     private void FixedUpdate()
@@ -41,17 +41,13 @@ public class Mover : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y + _offsetY), _radius);
         return colliders.Length > 1;
     } 
-    private void Jump()
-    {
-        _rigidbody.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
-    }
 
-    private void JumpAsNeeded()
+    private void Jump()
     {
         if (CheckOntheGround() && Input.GetKeyDown(KeyCode.Space))
         {
             _animator.SetBool(_jumping, true);
-            Jump();
+            _rigidbody.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
         }
         else
         {

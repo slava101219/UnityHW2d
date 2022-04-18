@@ -12,6 +12,7 @@ public class SpawnerCoin : MonoBehaviour
 
     private void Start()
     {
+        _coin.Report += ReportDestraction;
         StartCoroutine(Spawn());
     }
 

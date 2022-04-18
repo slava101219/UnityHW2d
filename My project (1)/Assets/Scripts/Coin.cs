@@ -5,11 +5,14 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
+    public delegate void InformantOfDestruction();
+    public event InformantOfDestruction Report;
+
     private void OnTriggerEnter2D (Collider2D other)
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
-            FindObjectOfType<SpawnerCoin>().ReportDestraction();
+            Report?.Invoke();
             Destroy(gameObject);
         }
     }
