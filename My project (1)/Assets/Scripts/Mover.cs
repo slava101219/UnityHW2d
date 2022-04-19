@@ -9,6 +9,8 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private Animator _animator;
 
+    public delegate void InformantOfDestruction();
+    public event InformantOfDestruction Report;
     private const string _offsetHorizontal = "horizontalMove";
     private const string _jumping = "jumping";
     private float _offsetY = -1.2f;
@@ -34,6 +36,15 @@ public class Mover : MonoBehaviour
         TurnAsNeeded();
         Vector2 targetVelocity = new Vector2(_horizontalMove * 10f, _rigidbody.velocity.y);
         _rigidbody.velocity = targetVelocity;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<Coin>(out Coin coin))
+        {
+            Report?.Invoke();
+            Destroy(coin.gameObject);
+        }
     }
 
     private bool CheckOntheGround()
