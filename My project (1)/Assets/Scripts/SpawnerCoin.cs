@@ -31,7 +31,7 @@ public class SpawnerCoin : MonoBehaviour
         }
     }
 
-    public void ReportDestraction()
+    private void ReportDestraction()
     {
         _isExist = false;
     }

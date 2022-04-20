@@ -33,7 +33,7 @@ public class Mover : MonoBehaviour
     {       
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _speed;
         _animator.SetFloat(_offsetHorizontal, Mathf.Abs(_horizontalMove));
-        TurnAsNeeded();
+        Turn();
         Vector2 targetVelocity = new Vector2(_horizontalMove * 10f, _rigidbody.velocity.y);
         _rigidbody.velocity = targetVelocity;
     }
@@ -74,7 +74,7 @@ public class Mover : MonoBehaviour
         transform.localScale = scale;
     }
 
-    private void TurnAsNeeded()
+    private void Turn()
     {
         if (_horizontalMove < 0 && _facingRight)
         {
