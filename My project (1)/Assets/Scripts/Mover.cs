@@ -9,15 +9,17 @@ public class Mover : MonoBehaviour
     [SerializeField] private float _jumpForce = 5f;
     [SerializeField] private Animator _animator;
 
-    public delegate void InformantOfDestruction();
-    public event InformantOfDestruction Report;
-    private const string _offsetHorizontal = "horizontalMove";
-    private const string _jumping = "jumping";
     private float _offsetY = -1.2f;
     private float _radius = 0.3f;
     private bool _facingRight = true;
     private float _horizontalMove = 0f;
     private Rigidbody2D _rigidbody;
+
+    private const string OffsetHorizontal = "horizontalMove";
+    private const string Jumping = "jumping";
+
+    public delegate void InformantOfDestruction();
+    public event InformantOfDestruction Report;
 
     private void Start()
     {
@@ -32,7 +34,7 @@ public class Mover : MonoBehaviour
     private void FixedUpdate()
     {       
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _speed;
-        _animator.SetFloat(_offsetHorizontal, Mathf.Abs(_horizontalMove));
+        _animator.SetFloat(OffsetHorizontal, Mathf.Abs(_horizontalMove));
         Turn();
         Vector2 targetVelocity = new Vector2(_horizontalMove * 10f, _rigidbody.velocity.y);
         _rigidbody.velocity = targetVelocity;
@@ -57,12 +59,12 @@ public class Mover : MonoBehaviour
     {
         if (CheckOntheGround() && Input.GetKeyDown(KeyCode.Space))
         {
-            _animator.SetBool(_jumping, true);
+            _animator.SetBool(Jumping, true);
             _rigidbody.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
         }
         else
         {
-            _animator.SetBool(_jumping, false);
+            _animator.SetBool(Jumping, false);
         }
     }
 

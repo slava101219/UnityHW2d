@@ -11,8 +11,9 @@ public class ZombieMover : MonoBehaviour
     private float _ditance = 1f;
     private bool _goesToRight = true;
     private Animator _animator;
-    private const string _isWalk = "isWalk";
     private int _maxWaitTime = 3;
+
+    private const string IsWalk = "isWalk";
 
     private void Start()
     {
@@ -24,31 +25,26 @@ public class ZombieMover : MonoBehaviour
         StartCoroutine(Patrolling());
     }
 
-    private void FixedUpdate()
-    {
-
-    }
-
     private IEnumerator Patrolling()
     {
-        OnWalking();
+        OnWalking(true);
         while (true)
         {
             if (transform.position.x >= _rightTarget.x - 0.01f)
             {
                 _goesToRight = false;
                 TurnBody();
-                OffWalking();
+                OnWalking(false);
                 yield return new WaitForSeconds(Random.Range(0, _maxWaitTime));
-                OnWalking();
+                OnWalking(true);
             }
             else if (transform.position.x <= _leftTarget.x + 0.01f)
             {
                 _goesToRight = true;
                 TurnBody();
-                OffWalking();
+                OnWalking(false);
                 yield return new WaitForSeconds(Random.Range(0, _maxWaitTime));
-                OnWalking();
+                OnWalking(true);
             }
 
             Move();
@@ -75,13 +71,8 @@ public class ZombieMover : MonoBehaviour
         transform.localScale = scale;
     }
 
-    private void OnWalking()
+    private void OnWalking(bool isWalk)
     {
-        _animator.SetBool(_isWalk, true);
-    }
-
-    private void OffWalking()
-    {
-        _animator.SetBool(_isWalk, false);
+        _animator.SetBool(IsWalk, isWalk);
     }
 }
