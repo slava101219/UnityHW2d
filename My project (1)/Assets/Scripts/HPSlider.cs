@@ -7,19 +7,21 @@ public class HPSlider : MonoBehaviour
 {
     [SerializeField] private Button _buttonIncreases;
     [SerializeField] private Button _buttonDecreases;
+    [SerializeField] private Player _player;
+    [SerializeField] private Notificator _notificator;
 
-    private Slider _hpSlider;
+    private Slider _slider;
     private Coroutine _changeValue;
-    private float _increaseHp = 0.1f;
-    private float _decreaseHp = -0.1f;
     private float _speed = 0.5f;
 
     private void Start()
     {
-        _hpSlider = GetComponent<Slider>();
+        _notificator.ReportForSliderValue += ChangeSliderValue;
+        _slider = GetComponent<Slider>();
+        _slider.value = (float)_player.HealthPoint / (float)_player.MaxHealth;
     }
 
-    public void ChageHPValue(bool increases)
+    private void ChangeSliderValue()
     {
         if(_changeValue != null)
         {
@@ -27,40 +29,20 @@ public class HPSlider : MonoBehaviour
             _changeValue = null;
         }
 
-        if (increases)
-        {
-            _changeValue = StartCoroutine(IncreaseHP());
-            
-
-        }
-        else if (increases == false)
-        {
-            _changeValue = StartCoroutine(DecreaseHP());
-        }
+        _changeValue = StartCoroutine(ChangeValue());
     }
 
-    private IEnumerator IncreaseHP()
+    private IEnumerator ChangeValue()
     {
         _buttonIncreases.interactable = false;
-        float targetValue = _hpSlider.value + _increaseHp;
-        while (_hpSlider.value != targetValue)
+        _buttonDecreases.interactable = false;
+        float targetValue = (float)_player.HealthPoint / (float)_player.MaxHealth;
+        while (_slider.value != targetValue)
         {
-            _hpSlider.value = Mathf.MoveTowards(_hpSlider.value, targetValue, _speed * Time.deltaTime);
+            _slider.value = Mathf.MoveTowards(_slider.value, targetValue, _speed * Time.deltaTime);
             yield return null;
         }
         _buttonIncreases.interactable = true;
-        yield break;
-    }
-
-    private IEnumerator DecreaseHP()
-    {
-        _buttonDecreases.interactable = false;
-        float targetValue = _hpSlider.value + _decreaseHp;
-        while (_hpSlider.value != targetValue)
-        {
-            _hpSlider.value = Mathf.MoveTowards(_hpSlider.value, targetValue, _speed * Time.deltaTime);
-            yield return null;
-        }
         _buttonDecreases.interactable = true;
         yield break;
     }
