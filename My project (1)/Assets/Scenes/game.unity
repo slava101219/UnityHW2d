@@ -1930,7 +1930,6 @@ MonoBehaviour:
   _buttonIncreases: {fileID: 2124230546}
   _buttonDecreases: {fileID: 1090644149}
   _player: {fileID: 323312750}
-  _notificator: {fileID: 414507207}
 --- !u!1001 &1295148594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3468,7 +3467,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 414507207}
+      - m_Target: {fileID: 2124230549}
         m_TargetAssemblyTypeName: Notificator, Assembly-CSharp
         m_MethodName: ClickOnIncreaseButton
         m_Mode: 1

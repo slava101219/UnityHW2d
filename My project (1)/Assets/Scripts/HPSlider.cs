@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Slider))]
+
 public class HPSlider : MonoBehaviour
 {
     [SerializeField] private Button _buttonIncreases;
     [SerializeField] private Button _buttonDecreases;
     [SerializeField] private Player _player;
-    [SerializeField] private Notificator _notificator;
 
     private Slider _slider;
     private Coroutine _changeValue;
@@ -16,7 +17,7 @@ public class HPSlider : MonoBehaviour
 
     private void Start()
     {
-        _notificator.ReportForSliderValue += ChangeSliderValue;
+        _player.ReportForSliderValue += ChangeSliderValue;
         _slider = GetComponent<Slider>();
         _slider.value = (float)_player.HealthPoint / (float)_player.MaxHealth;
     }
