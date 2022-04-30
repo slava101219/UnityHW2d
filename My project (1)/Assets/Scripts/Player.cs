@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -19,8 +20,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public delegate void ChangeSliderValue();
-    public event ChangeSliderValue ReportForSliderValue;
+    public event Action ReportForSliderValue;
 
     public void HPValueAdd()
     {
