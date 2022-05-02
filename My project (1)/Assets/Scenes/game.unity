@@ -1608,7 +1608,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 323312750}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: HpValueTake
+        m_MethodName: Damage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1864,8 +1864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be48808fbc421349a779435a86bf0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonIncreases: {fileID: 2124230546}
-  _buttonDecreases: {fileID: 1090644149}
   _player: {fileID: 323312750}
 --- !u!1001 &1295148594
 PrefabInstance:
@@ -3405,7 +3403,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 323312750}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: HPValueAdd
+        m_MethodName: Heal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

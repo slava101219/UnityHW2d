@@ -15,12 +15,12 @@ public class HPSlider : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.ReportForSliderValue += ChangeSliderValue;
+        _player.ReportAboutaboutChangeHP += ChangeSliderValue;
     }
 
     private void OnDisable()
     {
-        _player.ReportForSliderValue -= ChangeSliderValue;
+        _player.ReportAboutaboutChangeHP -= ChangeSliderValue;
     }
 
     private void Start()
