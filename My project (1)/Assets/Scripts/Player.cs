@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     private int _minHealth = 0;
     private int _healthPoint = 50;
+
     public int MaxHealth { get; private set; } = 100;
     public int HealthPoint
     {

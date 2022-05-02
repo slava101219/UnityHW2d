@@ -7,17 +7,24 @@ using UnityEngine.UI;
 
 public class HPSlider : MonoBehaviour
 {
-    [SerializeField] private Button _buttonIncreases;
-    [SerializeField] private Button _buttonDecreases;
     [SerializeField] private Player _player;
 
     private Slider _slider;
     private Coroutine _changeValue;
     private float _speed = 0.5f;
 
-    private void Start()
+    private void OnEnable()
     {
         _player.ReportForSliderValue += ChangeSliderValue;
+    }
+
+    private void OnDisable()
+    {
+        _player.ReportForSliderValue -= ChangeSliderValue;
+    }
+
+    private void Start()
+    {        
         _slider = GetComponent<Slider>();
         _slider.value = (float)_player.HealthPoint / (float)_player.MaxHealth;
     }
@@ -27,7 +34,6 @@ public class HPSlider : MonoBehaviour
         if(_changeValue != null)
         {
             StopCoroutine(_changeValue);
-            _changeValue = null;
         }
 
         _changeValue = StartCoroutine(ChangeValue());
@@ -35,16 +41,12 @@ public class HPSlider : MonoBehaviour
 
     private IEnumerator ChangeValue()
     {
-        _buttonIncreases.interactable = false;
-        _buttonDecreases.interactable = false;
         float targetValue = (float)_player.HealthPoint / (float)_player.MaxHealth;
         while (_slider.value != targetValue)
         {
             _slider.value = Mathf.MoveTowards(_slider.value, targetValue, _speed * Time.deltaTime);
             yield return null;
         }
-        _buttonIncreases.interactable = true;
-        _buttonDecreases.interactable = true;
         yield break;
     }
 }
