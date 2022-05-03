@@ -21,18 +21,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public event Action ReportAboutaboutChangeHP;
+    public event Action HealthChanged;
 
     public void Heal()
     {
 
         HealthPoint += _amountHPChanges;
-        ReportAboutaboutChangeHP?.Invoke();
+        HealthChanged?.Invoke();
     }
 
     public void Damage()
     {
         HealthPoint -= _amountHPChanges;
-        ReportAboutaboutChangeHP?.Invoke();
+        HealthChanged?.Invoke();
     }
 }
